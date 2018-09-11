@@ -1,3 +1,12 @@
 
 //composer
 $ /opt/bin/php -dmemory_limit=6G ./composer/composer.phar 
+// list commands
+$ /opt/lampp/bin/php -dmemory_limit=6G ../../../composer/composer.phar list
+//info on packages
+$ /opt/lampp/bin/php -dmemory_limit=6G ../../../composer/composer.phar info
+$ /opt/lampp/bin/php -dmemory_limit=6G ../../../composer/composer.phar show
+//diagnose
+$ /opt/lampp/bin/php -dmemory_limit=6G ../../../composer/composer.phar diagnose
+//list packages with options to upgrade
+$/opt/lampp/bin/php -dmemory_limit=6G ../../../composer/composer.phar outdated
