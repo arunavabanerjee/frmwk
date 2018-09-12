@@ -8,6 +8,10 @@ https://pages.ebay.co.uk/help/sell/edit_listing.html
 http://developer.ebay.com/Devzone/guides/ebayfeatures/index.html#HowthisDocumentationisOrganized
 http://developer.ebay.com/Devzone/guides/ebayfeatures/Basics/Call-APISchema.html#TheeBayDevelopersProgramReleaseCycle
 http://developer.ebay.com/devzone/xml/docs/reference/ebay/getmyebayselling.html
+
+http://devbay.net/sdk/guides/
+https://github.com/davidtsadler/ebay-sdk-php
+https://github.com/davidtsadler/ebay-sdk (deprecated)
 =====================================
 
 
