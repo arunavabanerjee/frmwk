@@ -194,6 +194,13 @@ Available commands:
  translation
   translation:update                      Updates the translation file
 
+====================================================================================================
+Dooctrine
+=========
+$qb = $this->createQueryBuilder('a');
+$query=$qb->getQuery();
+Show SQL: $sql=$query->getSQL();
+Show Parameters: $parameters=$query->getParameters();
 
 
 
