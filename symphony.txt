@@ -201,34 +201,7 @@ $qb = $this->createQueryBuilder('a');
 $query=$qb->getQuery();
 Show SQL: $sql=$query->getSQL();
 Show Parameters: $parameters=$query->getParameters();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+debug variables: \Doctrine\Common\Util\Debug::dump($user);
 
 
 
