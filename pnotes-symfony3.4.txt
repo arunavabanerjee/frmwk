@@ -1,3 +1,44 @@
+//symfony framework:
+//https://www.tutorialspoint.com/symfony/symfony_introduction.htm
+Symfony is designed to optimize the development of web applications and grows in features with every release.
+Some of the salient features of Symfony Framework is as follows −
+    Model-View-Controller based system
+    High-performance PHP framework
+    Flexible URI routing
+    Code reusable and easier to maintain
+    Session management
+    Error logging
+    Full-featured database classes with support for several platforms
+    Supports a huge and active community
+    Set of decoupled and reusable components
+    Standardization and interoperability of applications
+    Security against cross-site request forgery and other attacks
+    Twig template engine
+Symfony is a full-stack web framework; it is a very effective tool for creating web applications. 
+Following are some of the benefits that you get by using the Symfony Framework.
+    Microframework − Symfony can be used to develop a specific functionality. 
+                     You don’t need to redevelop or install the entire framework.
+    Reduces development time overhead.
+    Extremely mature templating engine and quickly delivers content to the users.
+    Compatible and extensible − Programmers can easily extend all framework classes.
+
+//Symfony Framework - Applications
+Symfony components can be used as a part of other applications such as Drupal, Laravel, phpBB, Behat, Doctrine, and Joomla.
+    Drupal 8 − Drupal is an open source content management PHP framework. 
+               Drupal 8 uses core layers of Symfony and extends it to provide support for Drupal modules.
+    Thelia − Thelia is a Symfony-based e-commerce solution. Initially, Thelia was written in PHP code and MySQL, 
+             however, it was lagging to produce faster applications. To overcome this drawback, 
+             Thelia integrated with Symfony to develop the applications in a customizable way.
+    Dailymotion − Dailymotion is one of the world's largest independent video entertainment website based in France. 
+                  Once they decided to migrate open source framework with a large community, Dailymotion developers decided 
+                  to use Symfony components features for its flexibility.
+Symfony is basically a collection of high quality components and bundles. Components are collection of classes providing a single core functionality. For example, Cache component provides cache functionality, which can be added to any application. Components are building blocks of a Symfony application. Symfony has 30+ high quality components, which are used in many PHP framework such as Laravel, Silex, etc.
+Bundles are similar to plugin but easy to create and easy to use. Actually, a Symfony application is itself a bundle composed of other bundles. A single bundle can use any number of Symfony component and also third-party components to provide features such as Webframework, database access, etc. Symfony core web-framework is a bundle called FrameworkBundle and there is a bundle called FrameworkExtraBundle, which provides more sophisticated options to write a web application.
+Symfony provides web framework as separate bundles. The common bundles used in Symfony web framework are as follows −
+    FrameworkBundle, FrameworkExtraBundle, DoctrineBundle
+Symfony web framework is based on Model-View-Controller (MVC) architecture.
+HttpKernel is the core component of the Symfony web framework. HttpKernel resolves the controller of the given request using Routing component and forward the request to the target controller.
+
 
 //symfony standard installation
 The Symfony Standard Edition is configured with the following defaults:
@@ -48,7 +89,112 @@ h. php ./bin/console security:check (checks composer.lock file for security chec
 ---- Installing packages via composer
 a. php -dmemory_limit=6G composer require dts/ebay-sdk-php 
    (updates composer.json, resolves dependencies, downloads packages)
-b. 
+---- console commands for symfony
+/opt/lampp/bin/php ./bin/console list 
+/opt/lampp/bin/php ./bin/console list doctrine 
+Symfony 3.4.14 (kernel: app, env: dev, debug: true) 
+
+//services in symfony app
+[developer@localhost symfonyv34]$ /opt/lampp/bin/php ./bin/console debug:container
+
+Symfony Container Public Services
+=================================
+ ----------------------------------------------------------------------------------------------------------  
+  Service ID                                                    Class name                                                                 
+ ----------------------------------------------------------------------------------------------------------
+  AppBundle\Controller\DefaultController                        AppBundle\Controller\DefaultController                                     
+  Symfony\Bundle\FrameworkBundle\Controller\RedirectController  Symfony\Bundle\FrameworkBundle\Controller\RedirectController               
+  Symfony\Bundle\FrameworkBundle\Controller\TemplateController  Symfony\Bundle\FrameworkBundle\Controller\TemplateController                
+  abstract.instanceof.AppBundle\Controller\DefaultController    AppBundle\Controller\DefaultController                                     
+  cache.app                                                     Symfony\Component\Cache\Adapter\TraceableAdapter                           
+  cache.app_clearer                                             alias for "cache.default_clearer"                                          
+  cache.global_clearer                                          Symfony\Component\HttpKernel\CacheClearer\Psr6CacheClearer                 
+  cache.system                                                  Symfony\Component\Cache\Adapter\TraceableAdapter                           
+  cache.system_clearer                                          Symfony\Component\HttpKernel\CacheClearer\Psr6CacheClearer                 
+  cache_clearer                                                 Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer                
+  cache_warmer                                                  Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate              
+  console.command.doctrine_bundle_doctrinecachebundle_command_containscommand    alias for "doctrine_cache.contains_command"                                
+  console.command.doctrine_bundle_doctrinecachebundle_command_deletecommand      alias for "doctrine_cache.delete_command"                                  
+  console.command.doctrine_bundle_doctrinecachebundle_command_flushcommand       alias for "doctrine_cache.flush_command"                                   
+  console.command.doctrine_bundle_doctrinecachebundle_command_statscommand       alias for "doctrine_cache.stats_command"                                   
+  console.command_loader                                        Symfony\Component\Console\CommandLoader\ContainerCommandLoader             
+  data_collector.dump                                           Symfony\Component\HttpKernel\DataCollector\DumpDataCollector               
+  database_connection                                           alias for "doctrine.dbal.default_connection"                               
+  doctrine                                                      Doctrine\Bundle\DoctrineBundle\Registry                                    
+  doctrine.dbal.default_connection                              Doctrine\DBAL\Connection                                                   
+  doctrine.orm.default_entity_manager                           Doctrine\ORM\EntityManager                                                 
+  doctrine.orm.default_metadata_cache                  alias for "doctrine_cache.providers.doctrine.orm.default_metadata_cache"   
+  doctrine.orm.default_query_cache                     alias for "doctrine_cache.providers.doctrine.orm.default_query_cache"      
+  doctrine.orm.default_result_cache                    alias for "doctrine_cache.providers.doctrine.orm.default_result_cache"  
+  doctrine.orm.entity_manager                          alias for "doctrine.orm.default_entity_manager"                            
+  doctrine_cache.providers.doctrine.orm.default_metadata_cache   Doctrine\Common\Cache\ArrayCache                                           
+  doctrine_cache.providers.doctrine.orm.default_query_cache      Doctrine\Common\Cache\ArrayCache                                           
+  doctrine_cache.providers.doctrine.orm.default_result_cache     Doctrine\Common\Cache\ArrayCache                                           
+  event_dispatcher                                               alias for "debug.event_dispatcher"                                         
+  filesystem                                                     Symfony\Component\Filesystem\Filesystem                                    
+  form.factory                                                   Symfony\Component\Form\FormFactory                                         
+  form.type.birthday                                             Symfony\Component\Form\Extension\Core\Type\BirthdayType                    
+  form.type.button                                               Symfony\Component\Form\Extension\Core\Type\ButtonType                      
+  form.type.checkbox                                             Symfony\Component\Form\Extension\Core\Type\CheckboxType                    
+  form.type.collection                                           Symfony\Component\Form\Extension\Core\Type\CollectionType                  
+  form.type.country                                              Symfony\Component\Form\Extension\Core\Type\CountryType                     
+  form.type.currency                                             Symfony\Component\Form\Extension\Core\Type\CurrencyType                    
+  form.type.date                                                 Symfony\Component\Form\Extension\Core\Type\DateType                        
+  form.type.datetime                                             Symfony\Component\Form\Extension\Core\Type\DateTimeType                    
+  form.type.email                                                Symfony\Component\Form\Extension\Core\Type\EmailType                       
+  form.type.file                                                 Symfony\Component\Form\Extension\Core\Type\FileType                        
+  form.type.hidden                                               Symfony\Component\Form\Extension\Core\Type\HiddenType                      
+  form.type.integer                                              Symfony\Component\Form\Extension\Core\Type\IntegerType                     
+  form.type.language                                             Symfony\Component\Form\Extension\Core\Type\LanguageType                    
+  form.type.locale                                               Symfony\Component\Form\Extension\Core\Type\LocaleType                      
+  form.type.money                                                Symfony\Component\Form\Extension\Core\Type\MoneyType                       
+  form.type.number                                               Symfony\Component\Form\Extension\Core\Type\NumberType                      
+  form.type.password                                             Symfony\Component\Form\Extension\Core\Type\PasswordType                    
+  form.type.percent                                              Symfony\Component\Form\Extension\Core\Type\PercentType                     
+  form.type.radio                                                Symfony\Component\Form\Extension\Core\Type\RadioType                       
+  form.type.range                                                Symfony\Component\Form\Extension\Core\Type\RangeType                       
+  form.type.repeated                                             Symfony\Component\Form\Extension\Core\Type\RepeatedType                    
+  form.type.reset                                                Symfony\Component\Form\Extension\Core\Type\ResetType                       
+  form.type.search                                               Symfony\Component\Form\Extension\Core\Type\SearchType                      
+  form.type.submit                                               Symfony\Component\Form\Extension\Core\Type\SubmitType                      
+  form.type.text                                                 Symfony\Component\Form\Extension\Core\Type\TextType                        
+  form.type.textarea                                             Symfony\Component\Form\Extension\Core\Type\TextareaType                    
+  form.type.time                                                 Symfony\Component\Form\Extension\Core\Type\TimeType                        
+  form.type.timezone                                             Symfony\Component\Form\Extension\Core\Type\TimezoneType                    
+  form.type.url                                                  Symfony\Component\Form\Extension\Core\Type\UrlType          
+  http_kernel                                                    Symfony\Component\HttpKernel\HttpKernel                                    
+  instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\DefaultController 
+                                                                 AppBundle\Controller\DefaultController                                     
+  kernel                                                                                                                                                                                
+  mailer                                                         alias for "swiftmailer.mailer.default"                                     
+  profiler                                                       Symfony\Component\HttpKernel\Profiler\Profiler                             
+  request_stack                                                  Symfony\Component\HttpFoundation\RequestStack                              
+  router                                                         alias for "router.default"                                                 
+  routing.loader                                                 Symfony\Bundle\FrameworkBundle\Routing\DelegatingLoader                    
+  security.authentication_utils                         Symfony\Component\Security\Http\Authentication\AuthenticationUtils         
+  security.authorization_checker                        Symfony\Component\Security\Core\Authorization\AuthorizationChecker         
+  security.csrf.token_manager                           Symfony\Component\Security\Csrf\CsrfTokenManager                           
+  security.password_encoder                             alias for "security.user_password_encoder.generic"                         
+  security.token_storage                          Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage  
+  service_container                                     Symfony\Component\DependencyInjection\ContainerInterface                   
+  services_resetter                                     Symfony\Component\HttpKernel\DependencyInjection\ServicesResetter          
+  session                                               Symfony\Component\HttpFoundation\Session\Session                           
+  swiftmailer.mailer.abstract                           Swift_Mailer                                                               
+  swiftmailer.mailer.default                            Swift_Mailer                                                               
+  swiftmailer.mailer.default.plugin.messagelogger       Swift_Plugins_MessageLogger                                                
+  swiftmailer.mailer.default.transport.real             alias for "swiftmailer.mailer.default.transport.smtp"                      
+  translator                                            Symfony\Component\Translation\IdentityTranslator                           
+  twig                                                  Twig\Environment                                                           
+  twig.controller.exception                             Symfony\Bundle\TwigBundle\Controller\ExceptionController                   
+  twig.controller.preview_error                         Symfony\Bundle\TwigBundle\Controller\PreviewErrorController                
+  validator                                             alias for "debug.validator"                                                
+  var_dumper.cloner                                     Symfony\Component\VarDumper\Cloner\VarCloner                               
+  web_profiler.controller.exception                     Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController            
+  web_profiler.controller.profiler                      Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController             
+  web_profiler.controller.router                        Symfony\Bundle\WebProfilerBundle\Controller\RouterController               
+ ---------------------------------------------------------------------------------------------------------
+ // To search for a specific service, re-run this command with a search term. (e.g. debug:container log)                                                                                    
+
 
 
 
