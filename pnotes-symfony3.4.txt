@@ -92,12 +92,24 @@ a. php -dmemory_limit=6G composer require dts/ebay-sdk-php
 ---- console commands for symfony
 /opt/lampp/bin/php ./bin/console list 
 /opt/lampp/bin/php ./bin/console list doctrine 
-/opt/lampp/bin/php ./bin/console cache:clear --env=prod
+/opt/lampp/bin/php ./bin/console cache:clear --env=prod 
+/opt/lampp/bin/php ./bin/console debug:router
+/opt/lampp/bin/php ./bin/console debug:router check_database_conn
+/opt/lampp/bin/php ./bin/console router:match /checkdbconn 
 Symfony 3.4.14 (kernel: app, env: dev, debug: true) 
 ---- setting symfony to dev mode
 a. change .htaccess in web to locate app_dev.php instead of app.php
 
 //services in symfony app
+Your application is full of useful objects: a "Mailer" object might help you send emails while another object might help 
+you save things to the database. Almost everything that your app "does" is actually done by one of these objects. 
+And each time you install a new bundle, you get access to even more!
+In Symfony, these useful objects are called services and each service lives inside a very special object called the service container. If you have the service container, then you can fetch a service by using that service's id. 
+\Symfony\Component\VarDumper\VarDumper::dump($this->container); 
+//will show the list of objects within containers
+//the DefaultController contains a container: appDevDebugProjectContainer that contains a number of services. 
+
+
 $ /opt/lampp/bin/php ./bin/console debug:container
 
 Symfony Container Public Services
