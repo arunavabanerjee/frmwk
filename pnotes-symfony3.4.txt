@@ -41,6 +41,11 @@ a. clone or download the symfony standard application (gets symfony standard 3.4
 b. extract to a folder named symfony-v3.4 (will generate an error if trying to run appln)
 c. php composer install (installs from composer.lock falls back to composer.json)
 d. php composer update/upgrade (installs upgraded system from composer.josn and updated composer.lock)
+e. this will startup the basic symfony system having the above bundles 
+f. http://symfony-v3.4/web/ - displays default page
+g. http://symfony-v3.4/web/config.php - configuration checker 
+h. php ./bin/console security:check (checks composer.lock file for security check)
+
 
 
 
