@@ -44,8 +44,11 @@ d. php composer update/upgrade (installs upgraded system from composer.josn and 
 e. this will startup the basic symfony system having the above bundles 
 f. http://symfony-v3.4/web/ - displays default page
 g. http://symfony-v3.4/web/config.php - configuration checker 
-h. php ./bin/console security:check (checks composer.lock file for security check)
-
+h. php ./bin/console security:check (checks composer.lock file for security check) 
+---- Installing packages via composer
+a. php -dmemory_limit=6G composer require dts/ebay-sdk-php 
+   (updates composer.json, resolves dependencies, downloads packages)
+b. 
 
 
 
