@@ -38,8 +38,10 @@ If that's your case, add the -vvv flag to the previous command to display a deta
  Composer is doing.
 ---- Using the symfony standard application (https://github.com/symfony/symfony-standard)
 a. clone or download the symfony standard application (gets symfony standard 3.4 version)
-b. extract to a folder named symfony-v3.4
-c. 
+b. extract to a folder named symfony-v3.4 (will generate an error if trying to run appln)
+c. php composer install (installs from composer.lock falls back to composer.json)
+d. php composer update/upgrade (installs upgraded system from composer.josn and updated composer.lock)
+
 
 
 
