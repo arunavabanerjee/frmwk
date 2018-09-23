@@ -92,6 +92,7 @@ a. php -dmemory_limit=6G composer require dts/ebay-sdk-php
 ---- console commands for symfony
 /opt/lampp/bin/php ./bin/console list 
 /opt/lampp/bin/php ./bin/console list doctrine 
+/opt/lampp/bin/php ./bin/console cache:clear --env=prod
 Symfony 3.4.14 (kernel: app, env: dev, debug: true) 
 ---- setting symfony to dev mode
 a. change .htaccess in web to locate app_dev.php instead of app.php
