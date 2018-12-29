@@ -1,0 +1,5 @@
+
+========================================
+\Symphony\Component\VarDumper\VarDumper::dump($cart); 
+\Doctrine\Common\Util\Debug::dump($productCategory);
+
