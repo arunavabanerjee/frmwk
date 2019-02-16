@@ -1,4 +1,23 @@
+//----------------
+// symphony 3.4 
+//----------------
+A. Install symphony-standard-3.4 onto a folder. 
+B. Using composer to install symfony 
+C. 
+
+
+
+
+
+
+
+
+
+
+
+//---------------------
 //symfony framework:
+//---------------------
 //https://www.tutorialspoint.com/symfony/symfony_introduction.htm
 Symfony is designed to optimize the development of web applications and grows in features with every release.
 Some of the salient features of Symfony Framework is as follows −
