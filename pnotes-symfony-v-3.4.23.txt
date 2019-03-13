@@ -1,0 +1,20 @@
+
+
+/**
+ * Symfony APP Flow
+ */
+"/"---------<FrontController>----<Symfony  Kernel>-----<homepageAction()>----response
+"/contact"--<FrontController>----<Symfony  Kernel>-----<contactAction()>-----response
+"/blog"----<FrontController>----<Symfony  Kernel>-----<blogAction()>--------response
+                                    |          |  
+                                Request URI   Controller
+                                    |-- ROUTING --| 
+
+/**
+ * composer 
+ */
+ php composer.phar info 
+ php composer.phar diagnostics
+ 
+
+
