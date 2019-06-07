@@ -1,3 +1,21 @@
+//controller
+		$bestsellers = array();
+        $bestsellerCateg = $pageService->cbestsellers(0, 0, 16); //dump($bestsellerCateg); exit; 
+		foreach($bestsellerCateg['results'] as $categoryId){  
+			$categoryInfoArr = $pageService->categoryInfoById($categoryId); 
+			$categoryName = $categoryInfoArr['category']->getCategoriesDescription()->getCategoriesName();
+			$categoryID = $categoryInfoArr['category']->getCategoriesId(); 
+			$parents = $categoryInfoArr['category']->getPath(); $slug = '';
+            if(count($parents) > 0){
+			  $cnt=1; foreach($parents as $parent){ 
+ 			    $pcategoryInfoArr = $pageService->categoryInfoById($parent->getCategoriesId());
+			    $slug .= $pcategoryInfoArr['slug'];
+			    if($cnt++ < count($parents)){ $slug .= '/'; }
+			  }
+			}else{ $slug = $categoryInfoArr['slug']; }
+			array_push($bestsellers, ['categoryId'=>$categoryID, 'slug'=>$slug, 'name' => $categoryName ]);
+		} //dump($bestsellers); exit;       
+
 
 //pageservice
     /**
