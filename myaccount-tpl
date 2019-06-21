@@ -1,0 +1,791 @@
+{% extends "adultsmart/base.html.twig" %}
+
+{% block title %}My Account Adultsmart{% endblock %}
+{% block description %}{% endblock %}
+{% block keywords %}{% endblock %}
+{% block canonical %}{{ absolute_url(path('my_account_page')) }}{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+/***** Profile Style *********/
+
+.profileheader {
+    padding: 0px 0 20px;
+    border-bottom: 1px solid #c7c7c7;
+}
+.prolefttitletop {
+    font-size: 17px;
+    color: #2d2d2d;
+    font-weight: 700 !important;
+}
+.prosidewidtitle {
+    font-size: 17px;
+    font-weight: 600 !important;
+}
+.widget.account-details ul {}
+.widget.account-details li {line-height: 24px;}
+.widget.account-details li a {
+    color: #9e9e9e;
+}
+.prosiderbar_widget {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #cecece;
+    position: relative;
+}
+.prosiderbar_widget:after {
+    position: absolute;
+    content: '';
+    width: 48px;
+    height: 3px;
+    background: #e4388c;
+    left: 0;
+    bottom: -2px;
+}
+.prosiderbar_widget:last-child:after {
+	display: none;
+}
+.prosiderbar_widget:last-child {
+    border-bottom: none;
+}
+.profiledtlssection {
+    border-left: 1px solid #c7c7c7;
+}
+.profiletop {
+    padding: 15px;
+    background: #f0f2ee;
+    margin-bottom: 30px;
+}
+.recent-post .media-link {
+    padding: 0;
+    margin-right: 30px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+.recent-post .media-body {
+    font-size: 16px;
+    line-height: 18px;
+}
+.usermailid {
+    color: #9e9e9e;
+    font-size: 15px;
+}
+.profile_icon_link {
+    border: 1px solid #e0e0e0;
+    padding: 25px 15px;
+    margin-bottom: 30px;
+}
+.proiconlinkdtls h5 {
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+}
+.proiconlinkdtls p {
+    color: #9e9e9e;
+    margin: 0;
+}
+.recent-post .media-link .fa {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  font-size: 24px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  margin-left: -15px;
+  margin-bottom: -15px;
+  color: #ffffff;
+  z-index: 11;
+  opacity: 0;
+}
+.recent-post .media-link:after {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 177, 106, 0);
+  z-index: 10;
+}
+.recent-post .media-link:hover .fa {
+  bottom: 50%;
+  opacity: 1;
+}
+.recent-post .media-link:hover:after {
+    background-color: rgba(228, 56, 140, 0.7);
+}
+.widget.account-details li a:hover {color: #000000;}
+.recent-post .media-link:after {
+    background-color: rgba(86, 61, 124, 0);
+}
+.recent-post .media-link:after {
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 177, 106, 0);
+    z-index: 10;
+}
+/******** Profile Style end ************/
+
+</style>
+
+    <section class="breadcrumb_sec">
+        <div class="container">
+            <ul class="breadcrumb themefontstyle text-uppercase">
+                <li><a href="{{ path('home_page') }}">ADULTSMART</a></li>
+                <li><a href="{{ path('my_account_page') }}" class="active">MY ACCOUNT</a></li>
+            </ul>
+        </div>
+    </section>
+
+	
+	<!-- main user profile section -->
+	<section class="userprofile_section mt-50">
+			<div class="container">
+				<div class="row">
+	 				{% for message in app.flashes('error') %}
+    						<div class="alert alert-danger">{{ message }}</div>
+	 				{% endfor %}
+
+	 				{% for message in app.flashes('success') %}
+    						<div class="alert alert-success">{{ message }}</div>
+	 				{% endfor %}
+
+
+					<div class="profile profile_dtls">
+		            	<div class="col-sm-12">
+			            	<div class="profileheader">
+			            		<h3 class="prohtitle themefontstyle">My Account</h3>
+			            		<span class="accountmail"></span>
+			            	</div>
+		            	</div>
+		                <div class="col-lg-3 col-md-4 col-sm-4 pt-30 profilesidebar">
+		                    <div class="widget account-details">
+		                    	<h2 id="allcattitle" class="text-uppercase prolefttitletop mt-0 mb-30 themefontstyle" data-parent="#allcat" data-target="#allcathome">Profile Information <i class="title_arrowlink fa fa-angle-down hidden-sm hidden-md hidden-lg"></i></h2>
+								<div class="panel-collapse" id="allcathome">
+		                    	<div class="prosiderbar_widget">
+		                    		<h5 class="prosidewidtitle themefontstyle">Order</h5>
+		                    		<ul class="profile_sidbar_widget_list">
+		                    			<li><a class="pnav_order_history" href="javascript:void(0)">Order History</a></li>
+		                    		</ul>
+		                    	</div>
+								
+								<div class="prosiderbar_widget">
+		                    		<h5 class="prosidewidtitle themefontstyle">Account</h5>
+		                    		<ul class="profile_sidbar_widget_list">
+		                    			<li><a class="pnav_info" href="javascript:void(0)">Profile</a></li>
+		                    			<li><a class="pnav_update_profile" href="javascript:void(0)">Edit Profile</a></li>
+		                    			<li><a class="pnav_update_settings" href="javascript:void(0)">Address Settings</a></li>
+		                    			<li><a class="pnav_wishlist" href="javascript:void(0)">Wishlist</a></li>
+		                    		</ul>
+		                    	</div>
+		                   
+		                    	<div class="prosiderbar_widget">
+		                    		<h5 class="prosidewidtitle themefontstyle">Help</h5>
+		                    		<!--<ul class="profile_sidbar_widget_list">
+		                    			<li><a class="pnav_ticket" href="#">Support Ticket</a></li>
+		                    		</ul>-->
+		                    	</div>
+		                    	<div class="prosiderbar_widget logoutsection">
+		                    		<ul class="profile_sidbar_widget_list">
+		                    			<li><a href="{{ path('do_logout_page') }}">Logout</a></li>
+		                    		</ul>
+		                    	</div>
+		                      	</div>
+		                      </div>
+		                </div>
+		                <div class="col-lg-9 col-md-8 col-sm-8  pt-30 profiledtlssection">
+		                    <div id="profile_content">
+						        <div class="col-md-12">
+					            	<div class="prodiledtls">
+					            		<div class="profiletop recent-post">
+					            			<div class="media">
+					            				<a class="pull-left media-link" href="#" style="height: 181px;">
+						                            <div class="media-object img-bg" id="blah" style="background-image: url('http://techizer.co/livedemo/development/rayant/template/front/img/dummypropic.png'); background-size: cover;background-position-x: center; background-position-y: top; width: 181px; height: 181px;"></div>
+						                            <form action="#" class="" method="post">
+						                                <span id="inppic" class="set_image">
+						                                    <label class="" for="imgInp">
+						                                        <span><i class="fa fa-pencil" style="cursor: pointer;"></i></span>
+						                                    </label>
+						                                    <input type="file" style="display:none;" id="imgInp" name="img">
+						                                </span>
+						                                <span id="savepic" style="display:none;">
+						                                    <span class="signup_btn" onclick="abnv('inppic');">
+						                                        <span><i class="fa fa-save" style="cursor: pointer;"></i></span>
+						                                    </span>
+						                                </span>
+						                            </form>
+						                        </a>
+					            				<div class="media-body">
+					            					<div class="profileinnerdtls pt-50 pb-50">
+												<h3 class="privacytitle blackcolor text-uppercase mt-20 mb-10"><span class="themecolor">WELCOME {{ user.customersFirstname }}</span></h3>
+					            						<h5 class="usermailid">First Name: <b>{{ user.customersFirstname }}</b></h5>
+														<h5 class="usermailid">Last Name: <b>{{ user.customersLastname }}</b></h5>
+														<h5 class="usermailid">User Id: <b>{{ user.customersId }}</b></h5>
+														<h5 class="usermailid">Email: <b>{{ user.customersEmailAddress }}</b></h5>
+					            					</div>
+					            				</div>
+					            			</div>
+					            		</div>
+					            	</div>
+					            </div>
+						    </div>
+		                    <div id="profilesection_shortcut">
+		                    	<div class="procatgorybig">
+					            	<div class="">
+					            		<ul class="procatlist">
+					            			<li class="col-lg-3 col-sm-6 col-md-6 col-xs-6">
+					            				<a href="javascript:void(0)" class="pnav_order_history">
+					            					<div class="profile_icon_link text-center">
+					            						<div class="proicon_img">
+					            							<img src="http://techizer.co/livedemo/development/rayant/template/front/img/order-icon.png" class="proicon" alt="Orders History">
+					            						</div>
+					            						<div class="proiconlinkdtls">
+					            							<h5 class="themefontstyle">Order</h5>
+					            							<p>Orders History</p>
+					            						</div>
+					            					</div>
+					            				</a>
+					            			</li>
+					            			<li class="col-lg-3 col-sm-6 col-md-6 col-xs-6">
+					            				<a href="javascript:void(0)" class="pnav_info">
+					            					<div class="profile_icon_link text-center">
+					            						<div class="proicon_img">
+					            							<img src="http://techizer.co/livedemo/development/rayant/template/front/img/profile-icon.png" class="proicon" alt="Profile">
+					            						</div>
+					            						<div class="proiconlinkdtls">
+					            							<h5 class="themefontstyle">Profile</h5>
+					            							<p>Edit Profile</p>
+					            						</div>
+					            					</div>
+					            				</a>
+					            			</li>
+					            			<li class="col-lg-3 col-sm-6 col-md-6 col-xs-6">
+					            				<a href="javascript:void(0)" class="pnav_wallet">
+					            					<div class="profile_icon_link text-center">
+					            						<div class="proicon_img">
+					            							<img src="http://techizer.co/livedemo/development/rayant/template/front/img/wallet-icon.png" class="proicon" alt="Wallet">
+					            						</div>
+					            						<div class="proiconlinkdtls">
+					            							<h5 class="themefontstyle">Wishlist</h5>
+					            							<p>Your Collection</p>
+					            						</div>
+					            					</div>
+					            				</a>
+					            			</li>
+					            			<li class="col-lg-3 col-sm-6 col-md-6 col-xs-6">
+					            				<a href="javascript:void(0)">
+					            					<div class="profile_icon_link text-center">
+					            						<div class="proicon_img">
+					            							<img src="http://techizer.co/livedemo/development/rayant/template/front/img/help-icon.png" class="proicon" alt="Help">
+					            						</div>
+					            						<div class="proiconlinkdtls">
+					            							<h5 class="themefontstyle">Help</h5>
+					            							<p>Support</p>
+					            						</div>
+					            					</div>
+					            				</a>
+					            			</li>
+					            		</ul>
+
+
+
+					            	</div>
+					            </div>
+		                    </div>
+		                </div>
+		            </div>
+				</div>
+			</div>
+		</section>
+	
+		
+		<!-- edit user -->
+    	<section class="edit-user-section mt-30">
+        	<div class="container">
+				<div class="row">
+					<div class="profile profile_dtls">
+		            	<div class="col-sm-12">
+			            	<div class="profileheader">
+			            		<h3 class="prohtitle themefontstyle">Account</h3>
+			            		<span class="accountmail"></span>
+			            	</div>
+		            	</div>
+		                <div class="col-lg-3 col-md-4 col-sm-4 pt-30 profilesidebar">
+		                    <div class="widget account-details">
+		                    	<h2 id="allcattitle" class="text-uppercase prolefttitletop mt-0 mb-30 themefontstyle" data-parent="#allcat" data-target="#allcathome">Profile Information <i class="title_arrowlink fa fa-angle-down hidden-sm hidden-md hidden-lg"></i></h2>
+								<div class="panel-collapse" id="allcathome">
+		                    	<div class="prosiderbar_widget">
+		                    		<h5 class="prosidewidtitle themefontstyle">Order</h5>
+		                    		<ul class="profile_sidbar_widget_list">
+		                    			<li><a class="pnav_order_history" href="javascript:void(0)">Order History</a></li>
+		                    		</ul>
+		                    	</div>
+								
+								<div class="prosiderbar_widget">
+		                    		<h5 class="prosidewidtitle themefontstyle">Account</h5>
+		                    		<ul class="profile_sidbar_widget_list">
+		                    			<li><a class="pnav_info" href="javascript:void(0)">Profile</a></li>
+		                    			<li><a class="pnav_update_profile" href="javascript:void(0)">Edit Profile</a></li>
+		                    			<li><a class="pnav_update_settings" href="javascript:void(0)">Address Settings</a></li>
+		                    			<li><a class="pnav_wishlist" href="javascript:void(0)">Wishlist</a></li>
+		                    		</ul>
+		                    	</div>
+		                    	
+		                    	<div class="prosiderbar_widget">
+		                    		<h5 class="prosidewidtitle themefontstyle">Help</h5>
+		                    		<!--<ul class="profile_sidbar_widget_list">
+		                    			<li><a class="pnav_ticket" href="#">Support Ticket</a></li>
+		                    		</ul>-->
+		                    	</div>
+		                    	<div class="prosiderbar_widget logoutsection">
+		                    		<ul class="profile_sidbar_widget_list">
+		                    			<li><a href="{{ path('do_logout_page') }}">Logout</a></li>
+		                    		</ul>
+		                    	</div>
+		                      	</div>
+		                      </div>
+		               </div>
+		               <div class="col-lg-9 col-md-8 col-sm-8  pt-30 profiledtlssection">
+		                   <div id="profile_content">
+						        <div class="col-md-12">
+					            	<div class="prodiledtls">
+										<h3 class="privacytitle blackcolor text-uppercase mt-20 mb-10"><span class="themecolor">Edit Profile</span></h3>
+										{{ form(customerform) }}
+
+										<h3 class="privacytitle blackcolor text-uppercase mt-20 mb-10"><span class="themecolor">Change Password</span></h3>
+										{{ form(changepasswordform) }}
+									</div>
+								</div>
+						   </div>
+					  </div>
+				  </div>
+            	</div>
+        	</div>
+    	</section>
+
+
+		<!-- edit user -->
+    	<section class="edit-user-settings mt-30">
+        	<div class="container">
+				<div class="row">
+					<div class="profile profile_dtls">
+		            	<div class="col-sm-12">
+			            	<div class="profileheader">
+			            		<h3 class="prohtitle themefontstyle">Account</h3>
+			            		<span class="accountmail"></span>
+			            	</div>
+		            	</div>
+		                <div class="col-lg-3 col-md-4 col-sm-4 pt-30 profilesidebar">
+		                    <div class="widget account-details">
+		                    	<h2 id="allcattitle" class="text-uppercase prolefttitletop mt-0 mb-30 themefontstyle" data-parent="#allcat" data-target="#allcathome">Profile Information <i class="title_arrowlink fa fa-angle-down hidden-sm hidden-md hidden-lg"></i></h2>
+								<div class="panel-collapse" id="allcathome">
+		                    	<div class="prosiderbar_widget">
+		                    		<h5 class="prosidewidtitle themefontstyle">Order</h5>
+		                    		<ul class="profile_sidbar_widget_list">
+		                    			<li><a class="pnav_order_history" href="javascript:void(0)">Order History</a></li>
+		                    		</ul>
+		                    	</div>
+								
+								<div class="prosiderbar_widget">
+		                    		<h5 class="prosidewidtitle themefontstyle">Account</h5>
+		                    		<ul class="profile_sidbar_widget_list">
+		                    			<li><a class="pnav_info" href="javascript:void(0)">Profile</a></li>
+		                    			<li><a class="pnav_update_profile" href="javascript:void(0)">Edit Profile</a></li>
+		                    			<li><a class="pnav_update_settings" href="javascript:void(0)">Address Settings</a></li>
+		                    			<li><a class="pnav_wishlist" href="javascript:void(0)">Wishlist</a></li>
+		                    		</ul>
+		                    	</div>
+		                    	
+		                    	<div class="prosiderbar_widget">
+		                    		<h5 class="prosidewidtitle themefontstyle">Help</h5>
+		                    		<!--<ul class="profile_sidbar_widget_list">
+		                    			<li><a class="pnav_ticket" href="#">Support Ticket</a></li>
+		                    		</ul>-->
+		                    	</div>
+		                    	<div class="prosiderbar_widget logoutsection">
+		                    		<ul class="profile_sidbar_widget_list">
+		                    			<li><a href="{{ path('do_logout_page') }}">Logout</a></li>
+		                    		</ul>
+		                    	</div>
+		                      	</div>
+		                      </div>
+		               </div>
+		               <div class="col-lg-9 col-md-8 col-sm-8  pt-30 profiledtlssection">
+		                   <div id="profile_content">
+						        <div class="col-md-12">
+					            	<div class="prodiledtls">
+										<h3 class="privacytitle blackcolor text-uppercase mt-20 mb-10"><span class="themecolor">Customer Addresses</span></h3>
+										{% set count=1 %}
+										{% for order in orders %}
+											<h3 class="privacytitle blackcolor mt-20 mb-10" style="font-size:20px;"><span class="themecolor">Default Billing Addresses</span></h3>
+											<h5 class="usermailid"> {{ order.billingName }} </h5>
+											<h5 class="usermailid"> {{ order.billingStreetAddress }} </h5>
+											<h5 class="usermailid"> {{ order.billingCity }} </h5>
+											<h5 class="usermailid"> {{ order.billingPostcode }} </h5>
+											<h5 class="usermailid"> {{ order.billingState }} </h5>
+											<h5 class="usermailid"> {{ order.billingCountry }} </h5>	
+										
+											<h3 class="privacytitle blackcolor mt-20 mb-10" style="font-size:20px;"><span class="themecolor">Default Delivery Addresses</span></h3>
+											<h5 class="usermailid"> {{ order.deliveryName }} </h5>
+											<h5 class="usermailid"> {{ order.deliveryStreetAddress }} </h5>
+											<h5 class="usermailid"> {{ order.deliveryCity }} </h5>
+											<h5 class="usermailid"> {{ order.deliveryPostcode }} </h5>
+											<h5 class="usermailid"> {{ order.deliveryState }} </h5>
+											<h5 class="usermailid"> {{ order.deliveryCountry }} </h5>
+											{% set count=count + 1 %}
+											{% if count > 1 %}
+												{% set break= true %}
+											{% endif %}
+										{% endfor %}										
+									</div>
+								</div>
+						   </div>
+					  </div>
+				  </div>
+            	</div>
+        	</div>
+    	</section>
+
+    <section class="checkout mt-30">
+        <div class="container">
+            <div class="row">
+					<div class="profile profile_dtls">
+		            	<div class="col-sm-12">
+			            	<div class="profileheader">
+			            		<h3 class="prohtitle themefontstyle">Account</h3>
+			            		<span class="accountmail"></span>
+			            	</div>
+		            	</div>
+		                <div class="col-lg-3 col-md-4 col-sm-4 pt-30 profilesidebar">
+		                    <div class="widget account-details">
+		                    	<h2 id="allcattitle" class="text-uppercase prolefttitletop mt-0 mb-30 themefontstyle" data-parent="#allcat" data-target="#allcathome">Profile Information <i class="title_arrowlink fa fa-angle-down hidden-sm hidden-md hidden-lg"></i></h2>
+								<div class="panel-collapse" id="allcathome">
+		                    	<div class="prosiderbar_widget">
+		                    		<h5 class="prosidewidtitle themefontstyle">Order</h5>
+		                    		<ul class="profile_sidbar_widget_list">
+		                    			<li><a class="pnav_order_history" href="javascript:void(0)">Order History</a></li>
+		                    		</ul>
+		                    	</div>
+								
+								<div class="prosiderbar_widget">
+		                    		<h5 class="prosidewidtitle themefontstyle">Account</h5>
+		                    		<ul class="profile_sidbar_widget_list">
+		                    			<li><a class="pnav_info" href="javascript:void(0)">Profile</a></li>
+		                    			<li><a class="pnav_update_profile" href="javascript:void(0)">Edit Profile</a></li>
+		                    			<li><a class="pnav_update_settings" href="javascript:void(0)">Address Settings</a></li>
+		                    			<li><a class="pnav_wishlist" href="javascript:void(0)">Wishlist</a></li>
+		                    		</ul>
+		                    	</div>
+		                    	
+		                    	<div class="prosiderbar_widget">
+		                    		<h5 class="prosidewidtitle themefontstyle">Help</h5>
+		                    		<!--<ul class="profile_sidbar_widget_list">
+		                    			<li><a class="pnav_ticket" href="#">Support Ticket</a></li>
+		                    		</ul>-->
+		                    	</div>
+		                    	<div class="prosiderbar_widget logoutsection">
+		                    		<ul class="profile_sidbar_widget_list">
+		                    			<li><a href="{{ path('do_logout_page') }}">Logout</a></li>
+		                    		</ul>
+		                    	</div>
+		                      	</div>
+		                      </div>
+		               </div>
+		               <div class="col-lg-9 col-md-8 col-sm-8  pt-30 profiledtlssection">
+		                   <div id="profile_content">
+						        <div class="col-md-12">
+					            	<div class="prodiledtls">
+
+				<h3 class="privacytitle blackcolor text-uppercase mt-20 mb-10"><span class="themecolor">Order History</span></h3>
+                {% for order in orders %}
+                    <div class="col-sm-12">
+                        <h3 class="privacytitle blackcolor text-uppercase mt-20 mb-10"><span class="themecolor">Order #{{ order.getOrdersId() }}</span></h3>
+                        <h4 class="blackcolor mb-30">
+                            <span>{{ order.getOrderStatusRetail().getOrdersStatusName() }}</span>
+                            <span>{{ order.getDatePurchased()|date("d/m/Y") }}</span>
+                        </h4>
+                        <div class="checkproduct">
+
+                            {% for order_product in order.getProducts() %}
+                                {% set product = order_product.getProduct() %}
+                                {% if product.getProductsId() != 0 and product.getProductsModel() != null %}
+                                    {% set image_url = 'http://xsales.com.au/images/' ~ product.getProductsImage() %}
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-2 col-xs-3 nopadding">
+                                                <img class="img-responsive" src="{{ product.getProductsImage() | imagine_filter('cart_thumb_adultsmart') }}" alt="product">
+                                            </div>
+                                            <div class="col-sm-5 col-xs-9">
+                                                <h4 class="product-name"><strong>{{ product.getProductsDescription().getProductsName() }}</strong></h4>
+                                            </div>
+                                            <div class="col-sm-5 col-xs-12 nopadding">
+                                                <div class="col-xs-4 nopadding text-center">
+                                                    <h6>Price</h6>
+                                                    <span>${{ order_product.getFinalPrice()|number_format(2) }}</span>
+                                                </div>
+                                                <div class="col-xs-5 text-center">
+                                                    <h6>QTY</h6>
+                                                    <span>{{ order_product.getProductsQuantity() }}</span>
+                                                </div>
+                                                <div class="col-xs-3 nopadding text-center">
+                                                    <h6>Subtotal</h6>
+                                                    {% set subtotal = order_product.getProductsQuantity() * order_product.getFinalPrice() %}
+                                                    <span>${{ subtotal|number_format(2) }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                {% endif %}
+                            {% endfor %}
+
+                            <div class="panel-body">
+                                {% if order.getOrderTotalRetail()['ot_subtotal'] is defined %}
+                                <div class="text-right">Subtotal: {{ order.getOrderTotalRetail()['ot_subtotal'].getText()|raw }}</div>
+                                {% endif %}
+
+                                {% if order.getOrderTotalRetail()['ot_shipping'] is defined %}
+                                <div class="text-right">Shipping: {{ order.getOrderTotalRetail()['ot_shipping'].getText()|raw }}</div>
+                                {% endif %}
+
+                                {% if order.getOrderTotalRetail()['ot_total'] is defined %}
+                                <div class="text-right">Total: {{ order.getOrderTotalRetail()['ot_total'].getText()|raw }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="panel-body">
+                                <h4>History</h4>
+                                <div class="row">
+                                    <div class="col-sm-6 col-lg-4"><h6>Date</h6></div>
+                                    <div class="col-sm-6 col-lg-4"><h6>Status</h6></div>
+                                    <div class="col-sm-6 col-lg-4"><h6>Comments</h6></div>
+                                </div>
+                                {% for history in order.getOrderStatusHistoryRetail() %}
+                                    {% if history.getOrdersStatus().getPublicFlag() == 1 %}
+                                        <div class="panel-body">
+                                            <div class="col-sm-6 col-lg-4">{{ history.getDateAdded()|date }}</div>
+                                            <div class="col-sm-6 col-lg-4">
+											<span 
+												{% if order.getOrderStatusRetail().getOrdersStatusName() == 'Pending' %}
+													{{ 'style="background: #e05050;font-weight:600;font-size:13px;padding:5px;color:#000;"' }}
+												{% endif %}
+												{% if order.getOrderStatusRetail().getOrdersStatusName() == 'Awaiting payment' %}
+													{{ 'style="background: #e05050;font-weight:600;font-size:13px;padding:5px;color:#000;"' }}
+												{% endif %}
+												{% if order.getOrderStatusRetail().getOrdersStatusName() == 'Dispatched' %}
+													{{ 'style="background:#c8e650;font-weight:600;font-size:13px;padding:5px;color:#000;"' }}
+												{% endif %} 
+												{% if order.getOrderStatusRetail().getOrdersStatusName() == 'Refund' %}
+													{{ 'style="background:#c8e650;font-weight:600;font-size:13px;padding:5px;color:#000;"' }}
+												{% endif %} >		
+												{{ history.getOrdersStatus().getOrdersStatusName() }}
+											 </span>
+											</div>
+                                            <div class="col-sm-6 col-lg-4">{{ history.getComments() }}</div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                {% endfor %}
+
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+        </div>
+        </div>
+    </section>
+
+    <section class="wishlist mt-30">
+        <div class="container">
+            <div class="row">
+					<div class="profile profile_dtls">
+		            	<div class="col-sm-12">
+			            	<div class="profileheader">
+			            		<h3 class="prohtitle themefontstyle">Account</h3>
+			            		<span class="accountmail"></span>
+			            	</div>
+		            	</div>
+		                <div class="col-lg-3 col-md-4 col-sm-4 pt-30 profilesidebar">
+		                    <div class="widget account-details">
+		                    	<h2 id="allcattitle" class="text-uppercase prolefttitletop mt-0 mb-30 themefontstyle" data-parent="#allcat" data-target="#allcathome">Profile Information <i class="title_arrowlink fa fa-angle-down hidden-sm hidden-md hidden-lg"></i></h2>
+								<div class="panel-collapse" id="allcathome">
+		                    	<div class="prosiderbar_widget">
+		                    		<h5 class="prosidewidtitle themefontstyle">Order</h5>
+		                    		<ul class="profile_sidbar_widget_list">
+		                    			<li><a class="pnav_order_history" href="javascript:void(0)">Order History</a></li>
+		                    		</ul>
+		                    	</div>
+								
+								<div class="prosiderbar_widget">
+		                    		<h5 class="prosidewidtitle themefontstyle">Account</h5>
+		                    		<ul class="profile_sidbar_widget_list">
+		                    			<li><a class="pnav_info" href="javascript:void(0)">Profile</a></li>
+		                    			<li><a class="pnav_update_profile" href="javascript:void(0)">Edit Profile</a></li>
+		                    			<li><a class="pnav_update_settings" href="javascript:void(0)">Settings</a></li>
+		                    			<li><a class="pnav_payment_summary" href="javascript:void(0)">Payment Summary</a></li>
+		                    			<li><a class="pnav_wishlist" href="javascript:void(0)">Wishlist</a></li>
+		                    		</ul>
+		                    	</div>
+		                    	
+		                    	<div class="prosiderbar_widget">
+		                    		<h5 class="prosidewidtitle themefontstyle">Help</h5>
+		                    		<!--<ul class="profile_sidbar_widget_list"><li><a class="pnav_ticket" href="#">Support Ticket</a></li></ul>-->
+		                    	</div>
+		                    	<div class="prosiderbar_widget logoutsection">
+		                    		<ul class="profile_sidbar_widget_list">
+		                    			<li><a href="{{ path('do_logout_page') }}">Logout</a></li>
+		                    		</ul>
+		                    	</div>
+		                      	</div>
+		                      </div>
+		               </div>
+		               <div class="col-lg-9 col-md-8 col-sm-8  pt-30 profiledtlssection">
+		                   <div id="profile_content">
+						        <div class="col-md-12">
+					            	<div class="prodiledtls">
+									<h3 class="privacytitle blackcolor text-uppercase mt-20 mb-10"><span class="themecolor">Wish List</span></h3>
+									<div class="col-sm-12">
+									<div class="checkproduct">
+                            		{% for wproduct in wishlists %}{% set product = wproduct %}
+                                	{% if product.getProductsId() != 0 and product.getProductsModel() != null %}
+                                    {% set image_url = 'http://xsales.com.au/images/' ~ product.getProductsImage() %}
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-2 col-xs-3 nopadding">
+                                                <img class="img-responsive" src="{{ product.getProductsImage() | imagine_filter('cart_thumb_adultsmart') }}" alt="product">
+                                            </div>
+                                            <div class="col-sm-5 col-xs-9">
+                                                <h4 class="product-name"><strong>{{ product.getProductsDescription().getProductsName() }}</strong></h4>
+                                            </div>
+                                            <div class="col-sm-5 col-xs-12 nopadding">
+                                                <div class="col-xs-4 nopadding text-center">
+                                                    <h6>Price</h6>
+                                                    <span>${{ product.getFinalPrice()|number_format(2) }}</span>
+                                                </div>
+                                                <div class="col-xs-3 text-center">
+                                                    <h6>QTY</h6>
+                                                    <span>{{ product.getProductsQuantity() }}</span>
+                                                </div>
+
+												<form id="submitwishlist" action="{{ path('my_account_page') }}" name="{{ product.getProductsId() }}" method="post">
+                                                <div class="col-xs-5 text-center">
+											{% if product.getProductsQuantity() > 0 %}
+											  <button name="addtocart" id="addtocart" class="themebutton2 themecolor themefontstyle2" style="font-size:13px;padding:6px 18px;">Add To Cart</button>
+		                       				{% endif %}
+											<button name ="removefromlist" id="removefromlist" class="themebutton2 themecolor themefontstyle2" style="font-size:13px;padding:6px 26px;">Remove</button>
+												<input type="hidden" name="productId" value="{{ product.getProductsId() }}" /> 
+                                                </div>
+												</form>
+
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                {% endif %}
+                            	{% endfor %}
+	                           <div class="clearfix"></div>
+                        	  </div>
+                    		  </div>
+							</div>
+			  			</div>
+					</div>
+		  		</div>
+		</div>
+        </div>
+        </div>
+    </section>
+
+
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+
+<script>
+/** all sections disabled apart from main one */
+$(document).ready(function(){ 
+	$('body section').each(function(){ 
+		if(!($(this).hasClass('breadcrumb_sec') || $(this).hasClass('userprofile_section'))){ 
+			$(this).css('display', 'none'); 
+		}
+	});
+});
+/** on click of order history enable the section */
+$('li a.pnav_order_history').on('click', function(){ 
+    $(this).css('color', '#f33a7e');
+   	$('body section').each(function(){ 
+		if($(this).hasClass('checkout')){ $(this).css('display', 'block'); }
+		else{ $(this).css('display', 'none'); }
+	});
+});
+/** on click of profile enable the userprofile section */
+$('li a.pnav_info').on('click', function(){ 
+    $(this).css('color', '#f33a7e');
+   	$('body section').each(function(){ 
+		if($(this).hasClass('userprofile_section')){ $(this).css('display', 'block'); }
+		else{ $(this).css('display', 'none'); }
+	});
+});
+/** on click of edit profile enable the edit profile section */
+$('li a.pnav_update_profile').on('click', function(){ 
+    $(this).css('color', '#f33a7e');
+   	$('body section').each(function(){ 
+		if($(this).hasClass('edit-user-section')){ $(this).css('display', 'block'); }
+		else{ $(this).css('display', 'none'); }
+	});
+});
+/** on click of edit settings enable the edit settings section */
+$('li a.pnav_update_settings').on('click', function(){
+    $(this).css('color', '#f33a7e'); 
+   	$('body section').each(function(){ 
+		if($(this).hasClass('edit-user-settings')){ $(this).css('display', 'block'); }
+		else{ $(this).css('display', 'none'); }
+	});
+});
+/** on click of wishlist enable the wishlist section */
+$('li a.pnav_wishlist').on('click', function(){ 
+   	$('body section').each(function(){ 
+		if($(this).hasClass('wishlist')){ $(this).css('display', 'block'); }
+		else{ $(this).css('display', 'none'); }
+	});
+});
+
+$('#ch-pass-form').submit(function(){ //alert('this');
+	 var password = jQuery('#form_password').val();
+	 var cpassword = jQuery('#form_confirm_password').val(); 
+	if(password == cpassword){ return true; }
+	else{ alert('Passwords Do Not Match !'); return false; }
+});
+
+$('#addtocart').click(function(){ $(this).parent().parent().submit(); });
+$('#removefromlist').click(function(){ $(this).parent().parent().submit(); });
+
+</script>
+
+
+{% endblock %}
