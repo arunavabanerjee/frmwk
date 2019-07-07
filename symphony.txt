@@ -10,6 +10,7 @@ $ /opt/bin/php -dmemory_limit=6G ../../../composer/composer.phar diagnose
 //list packages with options to upgrade
 $/opt/bin/php -dmemory_limit=6G ../../../composer/composer.phar outdated 
 
+
 ==================================================================================
 
 $ /opt/bin/php -dmemory_limit=6G ../../composer/composer.phar upgrade
